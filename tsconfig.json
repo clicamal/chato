@@ -12,7 +12,6 @@
 		"resolveJsonModule": true,
 		"outDir": "./dist",
 		"allowJs": true,
-		"checkJs": true,
 		"esModuleInterop": true
 	},
 
