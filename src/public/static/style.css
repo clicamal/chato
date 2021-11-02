@@ -1,0 +1,152 @@
+/*
+ Copyright (C) 2021  Tarcísio J. Santana Rodrigues
+
+ This file is part of Chato.
+
+ Chato is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ Chato is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+body {
+	margin: 0px;
+	border: 0px;
+	font-family: sans-serif;
+	font-size: larger;
+	background: #363636;
+}
+
+body > * {
+	box-sizing: border-box;
+	color: #ffffff;
+}
+
+header#pageHeader {
+	position: static;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 10vh;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 100%;
+	background: #6600ba;
+	box-shadow: 0px 3px 0px #7a7a7a;
+}
+
+h1#pageTitle {
+	margin: 0px;
+	border: 0px;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+	line-height: 10vh;
+	padding-left: 10px;
+}
+
+div#userInfo {
+	position: relative;
+}
+
+span#usernameInfo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+div#messages {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 98.5%;
+	height: 75%;
+	overflow-y: scroll;
+}
+
+form#messageForm {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 10vh;
+	padding: 0px;
+}
+
+form#messageForm > * {
+	box-sizing: border-box;
+}
+
+div#messageFormContentWrapper {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+div#messageFormContentGrid {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 99%;
+	height: 70%;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	box-shadow: 0px 0px 0px 2px #7a7a7a;
+}
+
+input[name=messageText], button[name=sendMessageButton] {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	border: none;
+	border-radius: 0px;
+	font-size: large;
+}
+
+input[name=messageText] {
+	padding-left: 10px;
+}
+
+button[name=sendMessageButton] {
+	background: #6600ba;
+	color: #ffffff;
+}
+
+div.Message {
+	display: grid;
+	grid-template-columns: 20% 80%;
+	margin-bottom: 15px;
+}
+
+span.SenderUsername {
+	font-weight: bold;
+}
+
+@media only screen and (max-width: 720px) {
+	div.Message {
+		display: initial;
+	}
+
+	div.Message > * {
+		display: block;
+	}
+
+	span.MessageText {
+		padding-left: 20px;
+	}
+
+
+}

@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"baseUrl": "./src",
+		"paths": {
+			"@http-server/*": [ "http-server/*" ],
+			"@models/*": [ "models/*" ],
+			"@hub": [ "hub/index" ],
+			"@socket-server/*": [ "socket-server/*" ],
+			"@client-router": [ "public/router" ]
+		},
+		"resolveJsonModule": true,
+		"outDir": "./dist",
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true
+	},
+
+	"include": [
+		"index.ts",
+		"src/**/**/*"
+	]
+}
