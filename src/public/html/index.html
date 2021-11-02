@@ -25,14 +25,27 @@
 	<title>Chato - Chat Server</title>
 
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
+	<script type="text/javascript" src="/static/lib/socket.io.min.js"></script>
+	<script type="text/javascript" src="/static/index.js"></script>
 </head>
 <body>
+	<form id="signinForm">
+		<div id="signinFormContentWrapper">
+			<span>Type your username to chat.</span>
+
+			<div id="signinFormContentWrapperGrid">
+				<input type="text" name="username" placeholder="Type in your username." autocomplete="off">
+				<button type="submit">Signin</button>
+			</div>
+		</div>
+	</form>
+
 	<header id="pageHeader">
 		<div id="pageTitleWrapper">
 			<h1 id="pageTitle">Chato</h1>
 		</div>
 		<div id="userInfo">
-			<span id="usernameInfo">You're chatting as 'username'.</span>
+			<span id="usernameInfo"><!--You're chatting as 'username'.--></span>
 		</div>
 	</header>
 
@@ -47,12 +60,13 @@
 			</span>
 		</div>
 		-->
+		</div>
 	</div>
 
 	<form id="messageForm">
 		<div id="messageFormContentWrapper">
 			<div id="messageFormContentGrid">
-				<input type="text" name="messageText" placeholder="Type your message here.">
+				<input type="text" name="messageText" placeholder="Type your message here." autocomplete="off">
 				<button type="submit" name="sendMessageButton">Send</button>
 			</div>
 		</div>

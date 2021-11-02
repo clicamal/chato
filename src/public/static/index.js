@@ -14,3 +14,86 @@
 
  // You should have received a copy of the GNU General Public License
  // along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+'use strict';
+
+var username = 'Guest';
+
+window.onload = () => {
+  const socket = io();
+
+  function writeMessage(data) {
+    var messageElement = document.createElement('div');
+    var senderNameElement = document.createElement('span');
+    var messageTextElement = document.createElement('span');
+
+    messageTextElement.className = 'Message';
+    senderNameElement.className = 'SenderUsername';
+    messageTextElement.className = 'MessageText';
+
+    senderNameElement.innerText = data.sender.name;
+    messageTextElement.innerText = ' ' + data.text;
+
+    messageElement.appendChild(senderNameElement);
+    messageElement.appendChild(messageTextElement);
+
+    document
+      .getElementById('messages')
+      .appendChild(messageElement);
+  }
+
+  function addMessage(data) {
+    if (data.sender.name === username)
+      data.sender.name = 'You';
+
+    data.sender.name += ':';
+
+    writeMessage(data);
+  }
+
+  function notifyEntrance(data) {
+    if (data.message)
+      return writeMessage({ sender: { name: data.message }, text: '' });
+
+    writeMessage({
+      sender: { name: data.name + ' has joined the Hub.'},
+      text: ''
+    });
+  }
+
+  socket.on('user-joined-the-hub', data => {
+    notifyEntrance(data);
+  });
+
+  socket.on('new-message', data => {
+    addMessage(data);
+  });
+
+  document
+    .getElementById('messageForm')
+    .addEventListener('submit', event => {
+      event.preventDefault();
+
+      var message = {
+        sender: username,
+        text: event.target.messageText.value
+      };
+
+      socket.emit('send-message', message);
+
+      event.target.messageText.value = '';
+    });
+
+    document
+    .getElementById('signinForm')
+    .addEventListener('submit', event => {
+      event.preventDefault();
+
+      username = event.target.username.value;
+
+      socket.emit('enter-hub', { name: username });
+
+      document.getElementById('usernameInfo').innerText = 'Chatting as ' + username;
+      document.body.removeChild(document.getElementById('signinForm'));
+    });
+}
