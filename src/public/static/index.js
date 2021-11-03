@@ -61,12 +61,35 @@ window.onload = () => {
     });
   }
 
+  function notifyExit(data) {
+    if (data.name === username)
+      return writeMessage({
+        sender: { name: 'You have left the Hub.'},
+        text: ''
+      });
+
+    writeMessage({
+      sender: { name: data.name + ' has left the Hub.'},
+      text: ''
+    });
+  }
+
   socket.on('user-joined-the-hub', data => {
     notifyEntrance(data);
   });
 
   socket.on('new-message', data => {
     addMessage(data);
+  });
+
+  socket.on('get-messages-result', data => {
+    for (let message of data) {
+      addMessage(message);
+    }
+  })
+
+  socket.on('user-disconnected', data => {
+    notifyExit(data);
   });
 
   document
@@ -90,6 +113,8 @@ window.onload = () => {
       event.preventDefault();
 
       username = event.target.username.value;
+
+      socket.emit('get-messages', null);
 
       socket.emit('enter-hub', { name: username });
 
