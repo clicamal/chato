@@ -49,6 +49,12 @@ export default function setEvents (socket: Socket): void {
 		socket.broadcast.emit('new-message', message);
 	});
 
+	socket.on('get-messages', (): void => {
+		var messages: Message[] = hub.getMessages();
+
+		socket.emit('get-messages-result', messages);
+	});
+
 	socket.on('delete-message', (data: { id: string }): void => {
 		var message: Message | null = hub.getMessage(data.id);
 
